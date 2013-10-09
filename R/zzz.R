@@ -1,1 +1,1 @@
-loadModule("knitro")
+loadModule("knitro", TRUE)
