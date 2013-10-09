@@ -1,0 +1,12 @@
+Package: RcppKnitro
+Type: Package
+Title: Bindings for Knitro
+Version: 0.0.0
+Date: 2013-10-09
+Authors@R: c(
+    person("Romain", "Francois", role = c("aut", "cre"), email = "romain@r-enthusiasts.com")
+    )
+Description: Bindings for Knitro
+License: GPL 
+Depends: Rcpp (>= 0.10.5)
+LinkingTo: Rcpp

@@ -1,0 +1,2 @@
+useDynLib(RcppKnitro)
+exportPattern("^[[:alpha:]]+")
