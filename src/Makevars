@@ -2,8 +2,6 @@
 PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"`
 
 # hardcoding these for now
-PKG_LIBS += `$(KNITRO)/lib/libknitro.dylib`
-PKG_LIBS += `$(KNITRO)/lib/libiomp5.dylib`
-
+PKG_LIBS += -L$(KNITRO)/lib -lknitro -liomp5
 PKG_CXXFLAGS = -I$(KNITRO)/include -I../inst/include
 

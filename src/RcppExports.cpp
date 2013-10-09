@@ -6,6 +6,20 @@
 
 using namespace Rcpp;
 
+// test_knitro
+int test_knitro();
+RcppExport SEXP RcppKnitro_test_knitro() {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        int __result = test_knitro();
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // infbound
 double infbound();
 RcppExport SEXP RcppKnitro_infbound() {
