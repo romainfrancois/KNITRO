@@ -37,6 +37,16 @@ public:
         return KTR_set_double_param( ptr, param_id, value ) ;
     }
     
+    inline int reset_params_to_defaults(){
+        return KTR_reset_params_to_defaults(ptr) ;    
+    }
+    inline int save_param_file(const char* filename){
+        return KTR_save_param_file(ptr, filename );    
+    }
+    inline int load_param_file(const char* filename){
+        return KTR_load_param_file(ptr, filename );    
+    }
+    
     inline int set_param( SEXP id, SEXP value ){
         if( Rcpp::is<int>(id) || Rcpp::is<double>(id) ){
             return set_int_param( Rcpp::as<int>(id), value ) ;

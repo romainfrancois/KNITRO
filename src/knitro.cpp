@@ -15,7 +15,11 @@ RCPP_MODULE(knitro){
     
     class_<Context>( "Context" )
         .constructor()
-        .method( "set_param", &Context_set_param ) 
+        .method( "set_param", &Context_set_param )
+        .method( "reset_params_to_defaults", &Context::reset_params_to_defaults )
+        .method( "save_param_file", &Context::save_param_file )
+        .method( "load_param_file", &Context::load_param_file )
+        
     ;
 
 }
