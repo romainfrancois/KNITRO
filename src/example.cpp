@@ -1,5 +1,9 @@
 #include <RcppKnitro.h>
 
+using namespace Rcpp ;
+using namespace knitro ;
+
+
 /* callback function that evaluates the objective
    and constraints */
 int  callback (const int evalRequestCode,
@@ -39,7 +43,8 @@ int test_knitro(){
     int  nStatus;
 
     /* variables that are passed to KNITRO */
-    KTR_context *kc;
+    knitro::Context kc ;
+    
     int n, m, nnzJ, nnzH, objGoal, objType;
     int *cType;
     int *jacIndexVars, *jacIndexCons;
@@ -91,19 +96,11 @@ int test_knitro(){
                     jacIndexVars[k] = i;
                     k++;
             }
-    
-    /* create a KNITRO instance */
-    kc = KTR_new();
-    if (kc == NULL)
-            exit( -1 ); // probably a license issue
-    
+
     /* set options: automatic gradient and hessian matrix */
-    if (KTR_set_int_param_by_name (kc, "gradopt", KTR_GRADOPT_FORWARD) != 0)
-            exit( -1 );
-    if (KTR_set_int_param_by_name (kc, "hessopt", KTR_HESSOPT_BFGS) != 0)
-            exit( -1 );
-    if (KTR_set_int_param_by_name (kc, "outlev", 1) != 0)
-            exit( -1 );
+    kc.set_param( "gradopt", KTR_GRADOPT_FORWARD) ;
+    kc.set_param( "hessopt", KTR_HESSOPT_BFGS) ;
+    kc.set_param( "outlev" , 1) ;
     
     /* register the callback function */
     if (KTR_set_func_callback (kc, &callback) != 0)
@@ -137,7 +134,6 @@ int test_knitro(){
             printf ("\nKNITRO successful, objective is = %e\n", obj);
     
     /* delete the KNITRO instance and primal/dual solution */
-    KTR_free (&kc);
     free (x);
     free (lambda);
     
