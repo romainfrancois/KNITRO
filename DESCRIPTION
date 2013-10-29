@@ -1,4 +1,4 @@
-Package: RcppKnitro
+Package: KNITRO
 Type: Package
 Title: Bindings for Knitro
 Version: 0.0.0
