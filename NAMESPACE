@@ -1,2 +1,2 @@
-useDynLib(RcppKnitro)
+useDynLib(KNITRO)
 exportPattern("^[[:alpha:]]+")
