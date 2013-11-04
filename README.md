@@ -2,7 +2,7 @@ RcppKnitro
 ==========
 
 ```
-require(RcppKnitro)
+require(KNITRO)
 
 kc <- new( Context )
 kc$set_param( "gradopt", KTR_GRADOPT_FORWARD) ;
