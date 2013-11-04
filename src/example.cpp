@@ -63,6 +63,7 @@ int test_knitro(){
     NumericVector cLoBnds(m);
     NumericVector cUpBnds(m, KTR_INFBOUND);
     cUpBnds[0] = 0.0 ; 
+    
     IntegerVector jacIndexVars(nnzJ);
     IntegerVector jacIndexCons(nnzJ);
     

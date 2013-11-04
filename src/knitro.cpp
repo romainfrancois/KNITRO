@@ -17,6 +17,10 @@ RCPP_MODULE(knitro){
     class_<Bounds>( "Bounds" )
         .constructor<SEXP,SEXP>()
     ;
+    class_<SparseMatrix>( "SparseMatrix" )
+        .constructor<>()
+        .constructor<int,IntegerVector, IntegerVector>()
+    ;
     
     class_<Context>( "Context" )
         .constructor()
