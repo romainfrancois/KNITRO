@@ -5,7 +5,7 @@ namespace knitro {
     
     class Bounds {
     public:
-        Bounds( SEXP low_, SEXP up_ ), low_null(true), up_null(true){
+        Bounds( SEXP low_, SEXP up_ ): low_null(true), up_null(true){
             if( !Rf_isNull(low_ ) ){
                 low_null = false ;
                 low = low_ ;
@@ -14,6 +14,16 @@ namespace knitro {
                 up_null = false ;
                 up = up_ ;
             }
+        }
+        
+        double* get_low() const {
+            if( low_null ) return NULL ;
+            return low.begin() ;
+        }
+        
+        double* get_up() const {
+            if( up_null ) return NULL ;
+            return up.begin() ;
         }
         
     private:

@@ -2,6 +2,8 @@
 #define RKNITRO_H
 
 #include <Rcpp.h>
+using namespace Rcpp ;
+
 #include <knitro.h>
 
 #include <KNITRO/Bounds.h>

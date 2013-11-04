@@ -58,9 +58,24 @@ public:
         return 0 ;
     }
     
-    // inline int init_problem(int n, int objGoal, int objType, const Bounds& xBounds, int m, const Bounds& cBounds){
-    //     return 0 ;    
-    // }
+    inline int init_problem(
+        int n, int objGoal, int objType, 
+        const Bounds& xBounds, int m, IntegerVector cType, const Bounds& cBounds, 
+        const SparseMatrix& jac, const SparseMatrix& hess,
+        NumericVector xInitial, NumericVector lambdaInitial 
+        ){
+        
+        return KTR_init_problem(
+            ptr, 
+            n, objGoal, objType, 
+            xBounds.get_low(), xBounds.get_up(), 
+            m, cType.begin() , cBounds.get_low(), cBounds.get_up(),   // constraints 
+            jac.size() , jac.get_cols(), jac.get_rows(),    // jacobian
+            hess.size(), hess.get_cols(), hess.get_rows(),  // hessian
+            xInitial.begin(), lambdaInitial.begin()
+            ) ;
+    
+    }
     
 private:
     

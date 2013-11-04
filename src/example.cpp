@@ -87,25 +87,25 @@ int test_knitro(){
     kc.set_param( "outlev" , 1) ;
     
     /* register the callback function */
-    if (KTR_set_func_callback (kc, &callback) != 0)
-            exit( -1 );
-    
-    /* pass the problem definition to KNITRO */
-    nStatus = KTR_init_problem (kc, n, objGoal, objType,
-                    xLoBnds, xUpBnds,
-                    m, cType, cLoBnds, cUpBnds,
-                    nnzJ, jacIndexVars, jacIndexCons,
-                    nnzH, NULL, NULL, xInitial, NULL);
-    
-    /* solver call */
-    nStatus = KTR_solve (kc, x, lambda, 0, &obj,
-            NULL, NULL, NULL, NULL, NULL, NULL);
-    
-    if (nStatus != 0)
-            Rprintf ("\nKNITRO failed to solve the problem, final status = %d\n",
-                    nStatus);
-    else
-            Rprintf ("\nKNITRO successful, objective is = %e\n", obj);
-    
+    // if (KTR_set_func_callback (kc, &callback) != 0)
+    //         exit( -1 );
+    // 
+    // /* pass the problem definition to KNITRO */
+    // nStatus = KTR_init_problem (kc, n, objGoal, objType,
+    //                 xLoBnds, xUpBnds,
+    //                 m, cType, cLoBnds, cUpBnds,
+    //                 nnzJ, jacIndexVars, jacIndexCons,
+    //                 nnzH, NULL, NULL, xInitial, NULL);
+    // 
+    // /* solver call */
+    // nStatus = KTR_solve (kc, x, lambda, 0, &obj,
+    //         NULL, NULL, NULL, NULL, NULL, NULL);
+    // 
+    // if (nStatus != 0)
+    //         Rprintf ("\nKNITRO failed to solve the problem, final status = %d\n",
+    //                 nStatus);
+    // else
+    //         Rprintf ("\nKNITRO successful, objective is = %e\n", obj);
+    // 
     return( 0 );   
 }

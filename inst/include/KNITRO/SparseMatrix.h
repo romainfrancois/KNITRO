@@ -7,18 +7,32 @@ namespace knitro {
     public:
         SparseMatrix() : n(0){}
         
-        SparseMatrix( int n_, IntegerVector vars_, IntegerVector cols_ ) : n(n_), vars(vars_), cols(cols_) {
+        SparseMatrix( int n_, IntegerVector rows_, IntegerVector cols_ ) : n(n_), rows(rows_), cols(cols_) {
             if( n > 0 ){
-                if( vars_.size() != n ) stop( "wrong size for variable index of non zero" ) ;
+                if( rows_.size() != n ) stop( "wrong size for variable index of non zero" ) ;
                 if( cols_.size() != n ) stop( "wrong size for variable index of non zero" ) ;
-                vars = vars_ ;
+                rows = rows_ ;
                 cols = cols_ ;
             }
         }
         
+        inline int size() const{ 
+            return n ; 
+        }
+        
+        inline int* get_rows() const {
+            if( n ) return rows.begin() ;
+            return NULL ;
+        }
+        
+        inline int* get_cols() const {
+            if( n ) return cols.begin() ;
+            return NULL ;
+        }
+        
     private:
         int n ;
-        IntegerVector vars ;
+        IntegerVector rows ;
         IntegerVector cols ;
     } ;
 }
