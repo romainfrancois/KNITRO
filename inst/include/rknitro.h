@@ -8,6 +8,7 @@ using namespace Rcpp ;
 
 #include <KNITRO/Bounds.h>
 #include <KNITRO/SparseMatrix.h>
+#include <KNITRO/Callback.h>
 #include <KNITRO/Context.h>
 
 #endif

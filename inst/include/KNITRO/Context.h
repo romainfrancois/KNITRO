@@ -106,6 +106,7 @@ private:
     }
     
     KTR_context_ptr ptr ;
+    double obj ;
 } ;
 
 }

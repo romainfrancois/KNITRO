@@ -22,6 +22,11 @@ RCPP_MODULE(knitro){
         .constructor<int,IntegerVector, IntegerVector>()
     ;
     
+    class_<Callback>( "Callback" )
+        .constructor<Function>()
+    ;
+    
+    
     class_<Context>( "Context" )
         .constructor()
         .method( "set_param", &Context_set_param )
