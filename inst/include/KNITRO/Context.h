@@ -58,6 +58,10 @@ public:
         return 0 ;
     }
     
+    // inline int init_problem(int n, int objGoal, int objType, const Bounds& xBounds, int m, const Bounds& cBounds){
+    //     return 0 ;    
+    // }
+    
 private:
     
     inline int set_int_param( int param_id, SEXP value ){

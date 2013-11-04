@@ -9,9 +9,14 @@ namespace knitro{
     int Context_set_param( Context* context, SEXP id, SEXP value ){
         return context->set_param( id, value ) ;    
     }
+    
 }
 
 RCPP_MODULE(knitro){
+    
+    class_<Bounds>( "Bounds" )
+        .constructor<SEXP,SEXP>()
+    ;
     
     class_<Context>( "Context" )
         .constructor()
