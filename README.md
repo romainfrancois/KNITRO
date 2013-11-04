@@ -14,6 +14,5 @@ tf <- tempfile()
 kc$save_param_file(tf)
 writeLines( readLines( tf ) )
 kc$load_param_file(tf)
-
 ```
 

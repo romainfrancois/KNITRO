@@ -1,4 +1,4 @@
-#include <RcppKnitro.h>
+#include <rknitro.h>
 
 using namespace knitro ;
 using namespace Rcpp ;
@@ -19,7 +19,6 @@ RCPP_MODULE(knitro){
         .method( "reset_params_to_defaults", &Context::reset_params_to_defaults )
         .method( "save_param_file", &Context::save_param_file )
         .method( "load_param_file", &Context::load_param_file )
-        
     ;
 
 }

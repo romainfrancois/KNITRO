@@ -1,4 +1,4 @@
-#include <RcppKnitro.h>
+#include <rknitro.h>
 
 using namespace Rcpp ;
 using namespace knitro ;

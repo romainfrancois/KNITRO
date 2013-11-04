@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 test_knitro <- function() {
-    .Call('RcppKnitro_test_knitro', PACKAGE = 'RcppKnitro')
+    .Call('KNITRO_test_knitro', PACKAGE = 'KNITRO')
 }
 
 infbound <- function() {
-    .Call('RcppKnitro_infbound', PACKAGE = 'RcppKnitro')
+    .Call('KNITRO_infbound', PACKAGE = 'KNITRO')
 }
 

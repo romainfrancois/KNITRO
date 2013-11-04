@@ -2,13 +2,12 @@
 // Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #include <Rcpp.h>
-#include "../inst/include/RcppKnitro.h"
 
 using namespace Rcpp;
 
 // test_knitro
 int test_knitro();
-RcppExport SEXP RcppKnitro_test_knitro() {
+RcppExport SEXP KNITRO_test_knitro() {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -22,7 +21,7 @@ END_RCPP
 }
 // infbound
 double infbound();
-RcppExport SEXP RcppKnitro_infbound() {
+RcppExport SEXP KNITRO_infbound() {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
