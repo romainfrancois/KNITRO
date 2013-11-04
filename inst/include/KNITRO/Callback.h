@@ -43,6 +43,7 @@ namespace knitro {
                   double * const hessVector,
                   void * userParams
         ){
+            // construct parameters for making the R call
             NumericVector x_( x, x+n) ;
             NumericVector lambda_(lambda, lambda+m+n) ;
             NumericVector obj_( obj, obj+1) ;
@@ -53,19 +54,22 @@ namespace knitro {
             NumericVector hessVector_( hessVector, hessVector+n) ;
             SEXP userParams_xp = PROTECT( R_MakeExternalPtr( userParams , R_NilValue, R_NilValue ) ) ;
             
+            // callback to R
             int res = as<int>( fun(evalRequestCode, n, m, nnzJ, nnzH, 
                 x_, lambda_, 
                 obj_, c_, objGrad_, 
                 jac_, hessian_, hessVector_, 
                 userParams_xp
                 ) );  
+            
+            // copy back into inputs
             std::copy( obj_.begin(), obj_.end(), obj ) ;
             std::copy( c_.begin(), c_.end(), c ) ;
             std::copy( objGrad_.begin(), objGrad_.end(), objGrad ) ;
             std::copy( jac_.begin(), jac_.end(), jac ) ;
             std::copy( hessian_.begin(), hessian_.end(), hessian ) ;
             std::copy( hessVector_.begin(), hessVector_.end(), hessVector ) ;
-            
+            UNPROTECT(1) ; // userParams_xp
             return res ;
         }
         
