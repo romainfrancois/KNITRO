@@ -3,7 +3,7 @@
 
 namespace knitro {
     
-    #define ASSERT_ARG(__ARG__) if( TAG(arg) != Rf_install(__ARG__) ) stop( "expecting formal argument '"  __ARG__ "'" ) ; p = CDR(p); arg = CAR(p)
+    #define ASSERT_ARG(__ARG__) if( TAG(p) != Rf_install(__ARG__) ) stop( "expecting formal argument '"  __ARG__ "'" ) ; p = CDR(p); arg = CAR(p)
     
     class Callback {
     public:
