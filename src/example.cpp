@@ -58,6 +58,7 @@ int test_knitro(){
     
     NumericVector xLoBnds(n) ;
     NumericVector xUpBnds(n, KTR_INFBOUND) ;
+    
     NumericVector xInitial(n, 2.0);
     IntegerVector cType(m, KTR_CONTYPE_GENERAL);
     NumericVector cLoBnds(m);

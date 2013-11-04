@@ -32,7 +32,7 @@ namespace knitro{
     }
     
     int rknitro_set_func_callback(KTR_context_ptr ptr, const Callback& cb){
-        *func_callback = cb ;
+        func_callback = const_cast<Callback*>(&cb) ;
         return KTR_set_func_callback( ptr, rknitro_callback ) ;
     }
     
@@ -44,7 +44,7 @@ RCPP_MODULE(knitro){
         .constructor<SEXP,SEXP>()
     ;
     class_<SparseMatrix>( "SparseMatrix" )
-        .constructor()
+        .default_constructor()
         .constructor<int,IntegerVector, IntegerVector>()
     ;
     

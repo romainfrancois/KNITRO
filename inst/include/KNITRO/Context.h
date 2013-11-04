@@ -63,7 +63,8 @@ public:
     
     inline int init_problem(
         int n, int objGoal, int objType, 
-        const Bounds& xBounds, int m, IntegerVector cType, const Bounds& cBounds, 
+        const Bounds& xBounds, 
+        int m, IntegerVector cType, const Bounds& cBounds, 
         const SparseMatrix& jac, const SparseMatrix& hess,
         NumericVector xInitial, NumericVector lambdaInitial 
         ){
@@ -75,7 +76,8 @@ public:
             m, cType.begin() , cBounds.get_low(), cBounds.get_up(),   // constraints 
             jac.size() , jac.get_cols(), jac.get_rows(),    // jacobian
             hess.size(), hess.get_cols(), hess.get_rows(),  // hessian
-            xInitial.begin(), lambdaInitial.begin()
+            xInitial.begin(), 
+            lambdaInitial.size() ? lambdaInitial.begin() : NULL
             ) ;
     
     }
