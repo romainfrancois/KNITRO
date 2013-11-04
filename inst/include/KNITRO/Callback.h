@@ -28,6 +28,46 @@ namespace knitro {
             ASSERT_ARG( "userParams" ) ;
         }
         
+        int eval(const int evalRequestCode,
+            const int n,
+            const int m,
+            const int nnzJ,
+            const int nnzH,
+            const double * const x,
+            const double * const lambda,
+                  double * const obj,
+                  double * const c,
+                  double * const objGrad,
+                  double * const jac,
+                  double * const hessian,
+                  double * const hessVector,
+                  void * userParams
+        ){
+            NumericVector x_( x, x+n) ;
+            NumericVector lambda_(lambda, lambda+m+n) ;
+            NumericVector obj_( obj, obj+1) ;
+            NumericVector c_( c, c+m) ;
+            NumericVector objGrad_( objGrad, objGrad+m) ;
+            NumericVector jac_( jac, jac+nnzJ) ;
+            NumericVector hessian_( hessian, hessian+nnzH) ;
+            NumericVector hessVector_( hessVector, hessVector+n) ;
+            SEXP userParams_xp = PROTECT( R_MakeExternalPtr( userParams , R_NilValue, R_NilValue ) ) ;
+            
+            int res = as<int>( fun(evalRequestCode, n, m, nnzJ, nnzH, 
+                x_, lambda_, 
+                obj_, c_, objGrad_, 
+                jac_, hessian_, hessVector_, 
+                userParams_xp
+                ) );  
+            std::copy( obj_.begin(), obj_.end(), obj ) ;
+            std::copy( c_.begin(), c_.end(), c ) ;
+            std::copy( objGrad_.begin(), objGrad_.end(), objGrad ) ;
+            std::copy( jac_.begin(), jac_.end(), jac ) ;
+            std::copy( hessian_.begin(), hessian_.end(), hessian ) ;
+            std::copy( hessVector_.begin(), hessVector_.end(), hessVector ) ;
+            
+            return res ;
+        }
         
     private:
         Function fun ;

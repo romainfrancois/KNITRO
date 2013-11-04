@@ -3,6 +3,9 @@
 
 namespace knitro {
     
+class Context ;
+int rknitro_set_func_callback(KTR_context_ptr, const Callback& ) ;   
+    
 class Context {
 public:
     Context(): ptr( KTR_new() ){
@@ -75,6 +78,10 @@ public:
             xInitial.begin(), lambdaInitial.begin()
             ) ;
     
+    }
+    
+    inline int set_func_callback( const Callback& cb){
+        return rknitro_set_func_callback( ptr, cb ) ;        
     }
     
 private:
