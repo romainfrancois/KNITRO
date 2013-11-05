@@ -28,7 +28,8 @@ namespace knitro{
               void * userParams) 
     {
         if(!func_callback) stop( "no callback has been registered" ) ;
-        return func_callback->eval( evalRequestCode, n, m, nnzJ, nnzH, x, lambda, obj, c, objGrad, jac, hessian, hessVector, userParams ) ;
+        return func_callback->eval( evalRequestCode, n, m, nnzJ, nnzH, x, lambda,
+            obj, c, objGrad, jac, hessian, hessVector, userParams ) ;
     }
     
     int rknitro_set_func_callback(KTR_context_ptr ptr, const Callback& cb){
@@ -61,6 +62,7 @@ RCPP_MODULE(knitro){
         .method( "load_param_file", &Context::load_param_file )
         .method( "init_problem", &Context::init_problem )
         .method( "set_func_callback", &Context::set_func_callback )
+        .method( "solve", &Context::solve )
     ;
 
 }

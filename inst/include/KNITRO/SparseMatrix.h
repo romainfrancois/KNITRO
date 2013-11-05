@@ -7,7 +7,7 @@ namespace knitro {
     public:
         SparseMatrix() : n(0){}
         
-        SparseMatrix( int n_, IntegerVector rows_, IntegerVector cols_ ) : n(n_), rows(rows_), cols(cols_) {
+        SparseMatrix( int n_, IntegerVector cols_, IntegerVector rows_ ) : n(n_), rows(rows_), cols(cols_) {
             if( n > 0 ){
                 if( rows_.size() != n ) stop( "wrong size for variable index of non zero" ) ;
                 if( cols_.size() != n ) stop( "wrong size for variable index of non zero" ) ;

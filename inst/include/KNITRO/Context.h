@@ -15,7 +15,7 @@ public:
     }
     ~Context(){ 
         KTR_free(&ptr);
-    }
+    }                                                       
     inline operator KTR_context_ptr(){ return ptr ; }
     inline KTR_context& operator*(){ return *ptr ; }
     inline KTR_context_ptr operator->(){ return ptr ; }
@@ -77,13 +77,23 @@ public:
             jac.size() , jac.get_cols(), jac.get_rows(),    // jacobian
             hess.size(), hess.get_cols(), hess.get_rows(),  // hessian
             xInitial.begin(), 
-            lambdaInitial.size() ? lambdaInitial.begin() : NULL
+            NULL
             ) ;
     
     }
     
     inline int set_func_callback( const Callback& cb){
         return rknitro_set_func_callback( ptr, cb ) ;        
+    }
+    
+    inline int solve(NumericVector x, NumericVector lambda, int evalStatus, double obj){
+        return KTR_solve(ptr, x.begin(), lambda.begin(), evalStatus, &obj, 
+            NULL, NULL, NULL, NULL, NULL, NULL ) ;
+        // return List::create( 
+        //     _["x"] = x, 
+        //     _["lambda"] = lambda, 
+        //     _["obj"] = obj
+        //     ) ;
     }
     
 private:
