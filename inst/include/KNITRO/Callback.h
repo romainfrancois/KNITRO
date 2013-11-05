@@ -55,27 +55,28 @@ namespace knitro {
             // SEXP userParams_xp = PROTECT( R_MakeExternalPtr( userParams , R_NilValue, R_NilValue ) ) ;
             
             // callback to R
-            int res = as<int>( fun(evalRequestCode, n, m, nnzJ, nnzH, 
-                x_, lambda_, 
-                obj_, c_, objGrad_, 
-                jac_, hessian_, hessVector_, 
-                R_NilValue // userParams_xp
-                ) );  
-            
-            // copy back into inputs
-            std::copy( obj_.begin(), obj_.end(), obj ) ;
-            std::copy( c_.begin(), c_.end(), c ) ;
-            std::copy( objGrad_.begin(), objGrad_.end(), objGrad ) ;
-            std::copy( jac_.begin(), jac_.end(), jac ) ;
-            
-            if(hessian){
-                std::copy( REAL(hessian_), REAL(hessian_)+nnzH, hessian ) ;
+            try{
+                List res = fun(evalRequestCode, n, m, nnzJ, nnzH, 
+                    x_, lambda_, 
+                    obj_, c_, objGrad_, 
+                    jac_, hessian_, hessVector_, 
+                    R_NilValue // userParams_xp
+                    );  
+                CharacterVector names = res.names() ;
+                if( in( CharacterVector::create("obj"), names ) ){
+                    *obj = as<double>( res["obj"] ) ; 
+                }
+                if( in( CharacterVector::create("c"), names ) ){
+                    NumericVector out_c = res["c"] ;
+                    std::copy( out_c.begin(), out_c.end(), c ) ;
+                }
+                
+                // UNPROTECT(1) ; // userParams_xp
+                return 0 ;
+            } catch(...){
+                Rprintf( "error occcured\n") ; 
+                return -1 ;
             }
-            if( hessVector ){
-                std::copy( REAL(hessVector_), REAL(hessVector_) + n, hessVector ) ;
-            }
-            // UNPROTECT(1) ; // userParams_xp
-            return res ;
         }
         
     private:
