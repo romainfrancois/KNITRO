@@ -6,7 +6,7 @@ concept is to enable users to express the code from
 [this page](http://www.artelys.com/knitro_doc/2_userGuide/gettingStarted/startCallableLibrary.html)
 entirely in R. 
 
-[demo/knitro.R](`demo/knitro.R`) contains a demo. 
+[`demo/knitro.R`](https://github.com/romainfrancois/KNITRO/blob/master/demo/knitro.R) contains a demo. 
 
 Installation
 ==========
