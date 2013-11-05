@@ -25,11 +25,11 @@ namespace knitro{
               double * const jac,
               double * const hessian,
               double * const hessVector,
-              void * userParams) 
+              void * /* userParams */) 
     {
         if(!func_callback) stop( "no callback has been registered" ) ;
         return func_callback->eval( evalRequestCode, n, m, nnzJ, nnzH, x, lambda,
-            obj, c, objGrad, jac, hessian, hessVector, userParams ) ;
+            obj, c, objGrad, jac, hessian, hessVector ) ;
     }
     
     int rknitro_set_func_callback(KTR_context_ptr ptr, const Callback& cb){
