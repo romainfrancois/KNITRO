@@ -28,7 +28,8 @@ fun <- function(evalRequestCode, n, m, nnzJ, nnzH,x,lambda,obj,c,objGrad,jac,hes
   
   list( obj = obj, c = c )
 }
-kc$set_func_callback(new( Callback, fun ))
+cb <- new( Callback, fun )
+kc$set_func_callback(cb)
 
 # problem size
 n <- 3

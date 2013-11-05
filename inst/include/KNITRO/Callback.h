@@ -89,8 +89,11 @@ namespace knitro {
                 }
                 
                 return 0 ;
+            } catch(eval_error& ex){
+                Rprintf( "error occured during callback evaluation: %s\n", ex.what() ) ; 
+                return -1 ;
             } catch(...){
-                Rprintf( "error occcured\n") ; 
+                Rprintf( "error during callback evaluation") ;
                 return -1 ;
             }
         }
